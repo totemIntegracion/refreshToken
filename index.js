@@ -92,6 +92,15 @@ async function getCodes() {
       throw error;
     }
   }
+async function ping() {
+  const url = "https://serverintegration-dev-gfbs.1.us-1.fl0.io/ping";
+  try {
+    const response = await axios.get(url);
+    console.log(response.data);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 app.post("/token", async (req, res) => {
     try {
@@ -102,7 +111,14 @@ app.post("/token", async (req, res) => {
       res.sendStatus(500).json({ error: err.message });
     }
   });
-
+app.get("/checkping", async (req, res) => {
+  try {
+    await ping();
+    res.json({ exitoso: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);
     }
