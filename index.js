@@ -93,7 +93,7 @@ async function getCodes() {
     }
   }
 async function ping() {
-  const url = "https://serverintegration-dev-gfbs.1.us-1.fl0.io/ping";
+  const url = "https://serverintegration-dev-gfbs.1.us-1.fl0.io/checkping";
   try {
     const response = await axios.get(url);
     console.log(response.data);
